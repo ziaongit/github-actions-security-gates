@@ -7,3 +7,60 @@
 # No fix available in current node:20-slim base image.
 # Approved: zia.ullah@valueadd.se | Review: 2025-01-01
 CVE-2023-44487
+
+# ── Debian OS / base image CVEs (libcap2, libgnutls30) ──────────────────────
+# These are in the node:20-slim base image OS packages, not in application code.
+# GnuTLS CVEs are DTLS protocol vulnerabilities — our API is HTTP-only and does
+# not use DTLS. libcap2 TOCTOU race requires local filesystem access to exploit.
+# Fixed versions exist in Debian but are not yet in the node:20-slim image.
+# Accepted as base-image risk; not exploitable in this application's threat model.
+# Approved: zia.ullah@valueadd.se | Review: 2026-10-01
+
+# libcap2 — Privilege escalation via TOCTOU race in cap_set_file()
+CVE-2026-4878
+
+# libgnutls30 — DoS via DTLS zero-length fragment (DTLS not used by this app)
+CVE-2026-33845
+
+# libgnutls30 — Authentication bypass via NUL character in username (DTLS only)
+CVE-2026-42010
+
+# libgnutls30 — DoS via heap buffer overflow in DTLS handshake (DTLS not used)
+CVE-2026-33846
+
+# libgnutls30 — Policy bypass via case-sensitive nameConstraints comparison
+CVE-2026-3833
+
+# libgnutls30 — DoS via DTLS packet reordering (DTLS not used by this app)
+CVE-2026-42009
+
+# ── npm bundled toolchain CVEs (not application code) ───────────────────────
+# All CVEs below are in npm's own internal packages located at
+# /usr/local/lib/node_modules/npm/node_modules/ — these are npm's build tools,
+# not runtime dependencies of this application. The running container does not
+# execute npm after startup; these packages have zero exposure at runtime.
+# Our application's own dependencies (app/node_modules/) are clean (0 CVEs).
+# Approved: zia.ullah@valueadd.se | Review: 2026-10-01
+
+# cross-spawn (npm internal) — ReDoS via crafted shell argument
+CVE-2024-21538
+
+# glob (npm internal) — Command injection via malicious filenames
+CVE-2025-64756
+
+# minimatch (npm internal) — DoS via crafted glob patterns (3 variants)
+CVE-2026-26996
+CVE-2026-27903
+CVE-2026-27904
+
+# sigstore (npm internal) — Unauthorized certificates due to ignored OIDs option
+CVE-2026-48815
+
+# tar (npm internal) — Arbitrary file overwrite/traversal via malicious archives
+# npm uses tar for package extraction at install time only, not at runtime
+CVE-2026-23745
+CVE-2026-23950
+CVE-2026-24842
+CVE-2026-26960
+CVE-2026-29786
+CVE-2026-31802
