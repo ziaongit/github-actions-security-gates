@@ -1,0 +1,3 @@
+10021	IGNORE	Strict-Transport-Security not set — intentional on HTTP local CI endpoint (TLS terminated at load balancer in production)
+10038	IGNORE	Content Security Policy not set — CSP headers applied at reverse proxy level, not in application code
+10035	IGNORE	Strict-Transport-Security not set on HTTPS — local CI uses HTTP only

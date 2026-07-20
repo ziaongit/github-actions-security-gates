@@ -1,0 +1,12 @@
+# .snyk — Snyk vulnerability suppression file
+# Format: ignore CVE ID, reason, expiry date
+# All suppressions must have a reason and expiry. Expired suppressions cause build failures.
+version: v1.25.0
+ignore:
+  SNYK-JS-INFLIGHT-6095116:
+    - '*':
+        reason: >
+          No upstream fix available. Package used only as a transitive dev dependency
+          (jest runner). Not shipped in production build (npm ci --omit=dev in Dockerfile).
+        expires: '2025-06-01T00:00:00.000Z'
+        created: '2024-07-01T00:00:00.000Z'

@@ -1,0 +1,9 @@
+# .trivyignore — Trivy CVE suppression file
+# One CVE ID per line. Add a comment above each entry explaining why it's suppressed.
+# Review suppressions quarterly.
+
+# CVE-2023-44487 (HTTP/2 Rapid Reset Attack)
+# Mitigated at load balancer level (nginx rate limiting + connection limits).
+# No fix available in current node:20-slim base image.
+# Approved: zia.ullah@valueadd.se | Review: 2025-01-01
+CVE-2023-44487
