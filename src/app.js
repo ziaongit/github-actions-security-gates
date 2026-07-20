@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// Disable X-Powered-By header — prevents advertising the framework to attackers
+app.disable('x-powered-by');
+
 app.use(express.json());
 
 // Health check endpoint — used by ZAP DAST gate to confirm app is running

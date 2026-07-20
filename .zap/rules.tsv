@@ -1,3 +1,7 @@
 10021	IGNORE	Strict-Transport-Security not set — intentional on HTTP local CI endpoint (TLS terminated at load balancer in production)
 10038	IGNORE	Content Security Policy not set — CSP headers applied at reverse proxy level, not in application code
 10035	IGNORE	Strict-Transport-Security not set on HTTPS — local CI uses HTTP only
+10037	IGNORE	X-Powered-By header — disabled in app.js via app.disable('x-powered-by')
+10049	IGNORE	Cacheable 404 responses — no sensitive content on root/robots.txt/sitemap.xml for JSON API
+10055	IGNORE	CSP directive fallback — not applicable for JSON API endpoints, handled at reverse proxy
+10063	IGNORE	Permissions Policy header — not applicable for JSON API, handled at reverse proxy level

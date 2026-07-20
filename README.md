@@ -50,16 +50,17 @@ App runs on http://localhost:3000
 npm audit --audit-level=high
 ```
 
-**Gate 2 — Image scan:**
+**Gate 2 — Image scan (via Docker, no Trivy install needed):**
 ```bash
 docker build -t myapp:local .
-trivy image --severity HIGH,CRITICAL myapp:local
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity HIGH,CRITICAL myapp:local
 ```
 
 **Gate 4 — ZAP baseline scan:**
 ```bash
+# Stop any running app first (npm start must not be running on port 3000)
 docker compose up -d
-docker run -t owasp/zap2docker-stable zap-baseline.py -t http://host.docker.internal:3000
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:3000
 docker compose down
 ```
 
